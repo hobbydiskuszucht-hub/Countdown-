@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Catweazle Countdown 🍻</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+      color: white;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    #countdown {
+      font-size: 50px;
+      margin: 30px 0;
+      color: #ffd700;
+    }
+
+    .names {
+      margin-top: 30px;
+      font-size: 22px;
+    }
+
+    .fun {
+      margin-top: 40px;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍻 Mission: Catweazle</h1>
+  <p>Der Countdown läuft…</p>
+
+  <div id="countdown"></div>
+
+  <div class="names">
+    Dabei sind:<br><br>
+    🍺 Julia<br>
+    🍺 Kunz<br>
+    🍺 Thomas<br>
+    🍺 Marcell<br>
+    🍺 Max
+  </div>
+
+  <div class="fun" id="funText">
+    Vorbereitung läuft… Leber wird initialisiert 🍺
+  </div>
+
+  <script>
+    const targetDate = new Date("2026-04-11T21:00:00").getTime();
+
+    const funMessages = [
+      "Vorbereitung läuft… Leber wird initialisiert 🍺",
+      "Gläser werden poliert… wahrscheinlich 🍻",
+      "Kunz wärmt sich schon mal auf 😏",
+      "Max sagt: nur ein Bier… wir glauben ihm nicht 😆",
+      "Thomas plant nichts Gutes 😈",
+      "Julia organisiert das Chaos 👑",
+      "Marcell kommt pünktlich… vielleicht 😂"
+    ];
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      document.getElementById("countdown").innerHTML =
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "🍻 LOS GEHT'S!!!";
+        document.getElementById("funText").innerHTML = "Ab ins Catweazle!!! 🚀";
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    // Lustige Texte wechseln
+    setInterval(() => {
+      const random = Math.floor(Math.random() * funMessages.length);
+      document.getElementById("funText").innerText = funMessages[random];
+    }, 4000);
+
+    updateCountdown();
+  </script>
+
+</body>
+</html>
